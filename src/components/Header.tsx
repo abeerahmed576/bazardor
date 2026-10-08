@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import TodaysDate from "./TodaysDate";
+import TodaysDate from "./shared/TodaysDate";
 
 function Header() {
   return (

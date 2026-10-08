@@ -1,21 +1,10 @@
 import getData from "@/lib/getData";
 import numToBn from "@/lib/numToBn";
 import units, { type Unit } from "@/lib/unitToBn";
+import { IProduct } from "@/types/Product.type";
 import { Suspense } from "react";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
-
-interface IProduct {
-  id: string;
-  nameBn: string;
-  unit: Unit;
-  image: string;
-  today: number;
-  change: {
-    dir: string;
-    pct: number;
-  };
-}
 
 const Marquee = async () => {
   const products = await getData<IProduct[]>(
@@ -30,11 +19,13 @@ const Marquee = async () => {
             <div className="space-x-2">
               <span>{product.image}</span>
               <span className="font-medium">{product.nameBn}</span>
-              <span>{`${numToBn(product.today)} টাকা/${units[product.unit]}`}</span>
+              <span className="font-light">{`${numToBn(product.today)} টাকা/${units[product.unit]}`}</span>
               {product.change.dir === "up" ? (
-                <span className="text-red-600">{`▲ ${numToBn(Math.abs(product.change.pct))}%`}</span>
+                <span className="font-extrabold text-red-600">{`▲ ${numToBn(Math.abs(product.change.pct))}%`}</span>
+              ) : product.change.dir === "down" ? (
+                <span className="font-extrabold text-green-600">{`▼ ${numToBn(Math.abs(product.change.pct))}%`}</span>
               ) : (
-                <span className="text-green-600">{`▼ ${numToBn(Math.abs(product.change.pct))}%`}</span>
+                <span className="font-extrabold">{`-- ${numToBn(Math.abs(product.change.pct))}%`}</span>
               )}
             </div>
           </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import TodaysDate from "@/components/TodaysDate";
+import TodaysDate from "@/components/shared/TodaysDate";
 
 function Hero() {
   return (
@@ -31,7 +31,7 @@ function Hero() {
       </div>
 
       <Image
-        className="xl:mr-10 h-65 w-75"
+        className="xl:mr-10 h-50 w-60 sm:h-65 sm:w-75"
         src="/bazar-hero.png"
         alt="fitlog banner"
         loading="eager"

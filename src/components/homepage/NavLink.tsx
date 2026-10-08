@@ -1,14 +1,8 @@
 "use client";
 
+import { ICategory } from "@/types/Category.type";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-export interface ICategory {
-  id: string;
-  slug: string;
-  nameBn: string;
-  icon: string;
-}
 
 interface NavLinkProps {
   category: ICategory;
