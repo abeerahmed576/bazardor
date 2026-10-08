@@ -1,7 +1,7 @@
 import getData from "@/lib/getData";
 import numToBn from "@/lib/numToBn";
 import { IProduct } from "@/types/Product.type";
-import ProductCard from "./shared/ProductCard";
+import ProductCard from "../shared/ProductCard";
 import { JSX, Suspense } from "react";
 
 interface IProductsSection {
@@ -77,7 +77,7 @@ async function ProductLibrary() {
       />
     </>
   ) : (
-    <div className="max-w-7xl mx-auto p-10 md:p-30 space-y-8 text-center bg-white-off rounded-2xl">
+    <div className="mt-10 max-w-7xl mx-auto p-10 md:p-30 space-y-8 text-center bg-white-off rounded-2xl">
       <div className="space-y-2">
         <h1 className="text-4xl font-bold uppercase">অপ্রত্যাশিত সমস্যা</h1>
         <p className="text-lg text-foreground-light">

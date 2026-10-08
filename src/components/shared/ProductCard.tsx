@@ -7,7 +7,7 @@ function ProductCard({ product }: { product: IProduct }) {
   return (
     <Link href={`/product/${product.id}`}>
       <div className="bg-white-main rounded-2xl card-xl shadow-sm">
-        <div className="p-4 space-y-2">
+        <div className="p-4 space-y-4">
           <div className="flex items-center gap-2">
             <span className="p-3 bg-white-off text-2xl rounded-2xl">
               {product.image}

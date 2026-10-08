@@ -4,6 +4,8 @@ export interface IProduct {
   id: string;
   slug: string;
   nameBn: string;
+  categoryNameBn: string;
+  categoryIcon: string;
   unit: Unit;
   image: string;
   today: number;
