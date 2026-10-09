@@ -12,7 +12,7 @@ interface IProductsSection {
 async function CategoryProducts({ params }: IProductsSection) {
   const { slug: category } = await params;
   const categoryProducts = await getData<IProduct[]>(
-    `${process.env.BAJARDOR_DATA_URL}/products?category=${category}`,
+    `${process.env.BAZARDOR_DATA_URL}/products?category=${category}`,
   );
   const currentCategoryName = categoryProducts[0].categoryNameBn;
   const currentCategoryIcon = categoryProducts[0].categoryIcon;

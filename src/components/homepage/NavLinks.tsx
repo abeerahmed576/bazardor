@@ -4,7 +4,7 @@ import { ICategory } from "@/types/Category.type";
 
 async function NavLinks() {
   const categories = await getData<ICategory[]>(
-    `${process.env.BAJARDOR_DATA_URL}/categories`,
+    `${process.env.BAZARDOR_DATA_URL}/categories`,
   ).catch(() => null);
 
   return categories ? (

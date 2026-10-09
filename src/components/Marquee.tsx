@@ -8,7 +8,7 @@ import "react-marquee-text/dist/styles.css";
 
 const Marquee = async () => {
   const products = await getData<IProduct[]>(
-    `${process.env.BAJARDOR_DATA_URL}/products`,
+    `${process.env.BAZARDOR_DATA_URL}/products`,
   ).catch(() => null);
 
   const jsx = products ? (

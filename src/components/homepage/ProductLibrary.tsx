@@ -41,7 +41,7 @@ function ProductsSection({ products, title, dir, id }: IProductsSection) {
 
 async function ProductLibrary() {
   const allProducts = await getData<IProduct[]>(
-    `${process.env.BAJARDOR_DATA_URL}/products`,
+    `${process.env.BAZARDOR_DATA_URL}/products`,
   ).catch(() => null);
 
   let top6UppedProducts: IProduct[] = [];
@@ -59,7 +59,7 @@ async function ProductLibrary() {
   }
 
   const jsx = allProducts ? (
-    <>
+    <div className="mx-3 xl:mx-0">
       <ProductsSection
         products={top6UppedProducts}
         title="আজকে দাম বেড়েছে"
@@ -75,9 +75,9 @@ async function ProductLibrary() {
         products={allProducts}
         title="সব পণ্য"
       />
-    </>
+    </div>
   ) : (
-    <div className="mt-10 max-w-7xl mx-auto p-10 md:p-30 space-y-8 text-center bg-white-off rounded-2xl">
+    <div className="mt-10 max-w-7xl mx-4 xl:mx-auto p-10 md:p-30 space-y-8 text-center bg-white-off rounded-2xl">
       <div className="space-y-2">
         <h1 className="text-4xl font-bold uppercase">অপ্রত্যাশিত সমস্যা</h1>
         <p className="text-lg text-foreground-light">

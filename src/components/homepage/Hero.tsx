@@ -7,10 +7,10 @@ function Hero() {
     <section
       className="
       bg-white-main rounded-2xl
-      max-w-7xl w-11/12 sm:mx-auto mx-4 p-7
+      max-w-7xl sm:mx-auto mx-4 p-6
       flex flex-col sm:flex-row justify-between items-center gap-7"
     >
-      <div className="space-y-7 text-center sm:text-start">
+      <div className="space-y-5 text-center sm:text-start">
         <TodaysDate styles="w-fit px-3 py-1 text-primary bg-primary-shade rounded-full" />
         <h1
           className="

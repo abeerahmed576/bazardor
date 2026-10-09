@@ -2,7 +2,7 @@
 
 function Error() {
   return (
-    <div className="mt-10 max-w-7xl mx-auto p-10 md:p-30 space-y-8 text-center bg-white-off rounded-2xl">
+    <div className="mt-10 max-w-7xl mx-4 xl:mx-auto p-10 md:p-30 space-y-8 text-center bg-white-off rounded-2xl">
       <div className="space-y-2">
         <h1 className="text-4xl font-bold uppercase">অপ্রত্যাশিত সমস্যা</h1>
         <p className="text-lg text-foreground-light">
