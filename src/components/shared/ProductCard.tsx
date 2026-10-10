@@ -2,6 +2,7 @@ import numToBn from "@/lib/numToBn";
 import units from "@/lib/unitToBn";
 import { IProduct } from "@/types/Product.type";
 import Link from "next/link";
+import ChangePct from "./ChangePct";
 
 function ProductCard({ product }: { product: IProduct }) {
   return (
@@ -27,13 +28,9 @@ function ProductCard({ product }: { product: IProduct }) {
                 টাকা
               </p>
             </div>
-            {product.change.dir === "up" ? (
-              <span className="px-2 py-1 bg-white-off rounded-full font-extrabold text-sm text-red-600">{`▲ ${numToBn(Math.abs(product.change.pct))}%`}</span>
-            ) : product.change.dir === "down" ? (
-              <span className="px-2 py-1 bg-white-off rounded-full font-extrabold text-sm text-green-600">{`▼ ${numToBn(Math.abs(product.change.pct))}%`}</span>
-            ) : (
-              <span className="px-2 py-1 bg-white-off rounded-full font-extrabold text-sm">{`-- ${numToBn(Math.abs(product.change.pct))}%`}</span>
-            )}
+            <span className="px-2 py-1 bg-white-off rounded-full">
+              <ChangePct dir={product.change.dir} pct={product.change.pct} />
+            </span>
           </div>
         </div>
       </div>

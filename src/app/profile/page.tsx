@@ -21,7 +21,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <main className="space-y-5 pt-15 sm:pt-25 pb-10 bg-background-body gap-2">
+    <main className="pt-15 sm:pt-25 pb-10 bg-background-body gap-2">
       <section className="space-y-5 max-w-2xl sm:mx-auto mx-4">
         <div>
           <div>
@@ -39,10 +39,10 @@ const ProfilePage = () => {
             <div>
               {/* <h2>{user?.name}</h2>
         <p>{user?.email}</p> */}
-              <h2 className="font-semibold text-lg sm:text-[22px]">
+              <h2 className="font-semibold text-lg sm:text-2xl">
                 Rezwan Ahmed
               </h2>
-              <p className="text-xs">rezwanahmed@gmail.com</p>
+              <p className="text-xs sm:text-base">rezwanahmed@gmail.com</p>
             </div>
           </div>
           <button className="text-[13px] sm:text-base pt-1 px-2 btn btn-outline text-red-500 border-red-500">

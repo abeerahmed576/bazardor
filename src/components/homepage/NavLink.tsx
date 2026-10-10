@@ -12,17 +12,15 @@ function NavLink({ category }: NavLinkProps) {
   const currentPath = usePathname();
 
   return (
-    <div
-      className={`space-x-1 px-4 py-2 rounded-xl ${`/category/${category.slug}` === currentPath ? "bg-primary" : ""}`}
-    >
-      <span>{category.icon}</span>
+    <li>
       <Link
         href={`/category/${category.slug}`}
-        className={`${`/category/${category.slug}` === currentPath ? "text-white-main" : ""}`}
+        className={`btn btn-ghost rounded-lg ${`/category/${category.slug}` === currentPath ? "text-white-main bg-primary" : ""}`}
       >
+        <span>{category.icon}</span>
         {category.nameBn}
       </Link>
-    </div>
+    </li>
   );
 }
 

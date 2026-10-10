@@ -14,19 +14,21 @@ function CategoryProductList({ list }: { list: IProduct[] }) {
   const sortedList = sortList(sortBy, list);
   return (
     <div className="space-y-5">
-      <p>মোট {numToBn(list.length)}টি পণ্য দেখানো হচ্ছে</p>
-      <label className="w-full p-5 bg-white-main justify-end rounded-2xl flex items-center gap-2">
-        <span>সাজান</span>
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value as TSortBy)}
-          className="select w-fit max-w-40 rounded-xl"
-        >
-          <option value="default">ডিফল্ট</option>
-          <option value="lth">দামঃ ছোট থেকে বড়</option>
-          <option value="htl">দামঃ বড় থেকে ছোট</option>
-        </select>
-      </label>
+      <div className="w-full rounded-2xl flex justify-between items-center">
+        <p>মোট {numToBn(list.length)}টি পণ্য দেখানো হচ্ছে</p>
+        <div>
+          <span className="mr-2">সাজান</span>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as TSortBy)}
+            className="select w-fit max-w-40 rounded-xl"
+          >
+            <option value="default">ডিফল্ট</option>
+            <option value="lth">দামঃ ছোট থেকে বড়</option>
+            <option value="htl">দামঃ বড় থেকে ছোট</option>
+          </select>
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
         {sortedList.map((product) => (
           <ProductCard key={product.id} product={product} />

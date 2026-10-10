@@ -1,6 +1,6 @@
 function TodaysDate({ styles }: { styles?: string }) {
   return (
-    <p className={`${styles ? styles : ""}`}>
+    <p className={`font-light ${styles ? styles : ""}`}>
       {new Date().toLocaleDateString("bn-BD", { dateStyle: "full" })}
     </p>
   );

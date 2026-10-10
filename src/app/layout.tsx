@@ -12,7 +12,7 @@ const hindSiliguri = Hind_Siliguri({
 });
 
 export const metadata: Metadata = {
-  title: "হোম - বাজার দর",
+  title: "হোম | বাজার দর",
   description: "বাজার দর — প্রয়োজনীয় পণ্যের দাম এক নজরে।",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full">
         <Header />
-        {/* <NavLinks /> */}
+        <NavLinks />
         <Marquee />
         {children}
         <Footer />

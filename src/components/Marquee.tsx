@@ -5,6 +5,7 @@ import { IProduct } from "@/types/Product.type";
 import { Suspense } from "react";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
+import ChangePct from "./shared/ChangePct";
 
 const Marquee = async () => {
   const products = await getData<IProduct[]>(
@@ -13,20 +14,14 @@ const Marquee = async () => {
 
   const jsx = products ? (
     <div className="border-y border-y-white-off">
-      <MarqueeText direction="right" duration={15}>
+      <MarqueeText direction="right" duration={8}>
         {products.map((product) => (
           <div className="px-3 py-2 border-l border-l-white-off">
             <div className="space-x-2">
               <span>{product.image}</span>
               <span className="font-medium">{product.nameBn}</span>
               <span className="font-light">{`${numToBn(product.today)} টাকা/${units[product.unit]}`}</span>
-              {product.change.dir === "up" ? (
-                <span className="font-extrabold text-red-600">{`▲ ${numToBn(Math.abs(product.change.pct))}%`}</span>
-              ) : product.change.dir === "down" ? (
-                <span className="font-extrabold text-green-600">{`▼ ${numToBn(Math.abs(product.change.pct))}%`}</span>
-              ) : (
-                <span className="font-extrabold">{`-- ${numToBn(Math.abs(product.change.pct))}%`}</span>
-              )}
+              <ChangePct dir={product.change.dir} pct={product.change.pct} />
             </div>
           </div>
         ))}
