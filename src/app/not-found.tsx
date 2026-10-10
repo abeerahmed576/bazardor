@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function NotFound() {
   return (
-    <div className="mt-10 max-w-7xl mx-auto p-10 md:p-30 space-y-8 text-center bg-white-off rounded-2xl">
+    <div className="flex flex-1 flex-col justify-center items-center bg-background-body space-y-6 text-center">
       <div className="space-y-2">
         <h1 className="text-4xl font-bold uppercase">
           ৪০৪ - খুঁজে পাওয়া যায়নি

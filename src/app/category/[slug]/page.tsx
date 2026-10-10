@@ -17,7 +17,7 @@ export async function generateMetadata({
   );
 
   return {
-    title: `${categoryProducts[0].categoryNameBn} এর আজকের দাম | বাজার দর`,
+    title: `${categoryProducts[0].categoryNameBn ? ` ${categoryProducts[0].categoryNameBn} এর আজকের দাম | বাজার দর` : "বাজার দর"}`,
   };
 }
 
@@ -30,9 +30,9 @@ async function CategoryProducts({ params }: SlugProps) {
   const currentCategoryIcon = categoryProducts[0].categoryIcon;
 
   return (
-    <main className="min-h-[80vh] bg-background-body py-8">
-      <section className="space-y-5 max-w-7xl mx-auto">
-        <div className="space-x-3 p-5 bg-white-main rounded-2xl border border-gray-300 flex items-center gap-2">
+    <main className="flex-1 bg-background-body">
+      <div className="w-full max-w-7xl mx-auto px-4 py-6 flex flex-col gap-6">
+        <header className="space-x-3 p-5 bg-white-main rounded-2xl border border-gray-300 flex items-center gap-2">
           <span className="text-4xl">{currentCategoryIcon}</span>
           <div>
             <h2 className="font-extrabold text-3xl">{currentCategoryName}</h2>
@@ -40,10 +40,10 @@ async function CategoryProducts({ params }: SlugProps) {
               {numToBn(categoryProducts.length)}টি পণ্যের আজকের দাম ও পরিবর্তন
             </p>
           </div>
-        </div>
+        </header>
 
         <CategoryProductList list={categoryProducts} />
-      </section>
+      </div>
     </main>
   );
 }

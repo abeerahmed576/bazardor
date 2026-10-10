@@ -15,7 +15,7 @@ function NavLink({ category }: NavLinkProps) {
     <li>
       <Link
         href={`/category/${category.slug}`}
-        className={`btn btn-ghost rounded-lg ${`/category/${category.slug}` === currentPath ? "text-white-main bg-primary" : ""}`}
+        className={`w-max btn btn-ghost rounded-lg ${`/category/${category.slug}` === currentPath ? "text-white-main bg-primary" : ""}`}
       >
         <span>{category.icon}</span>
         {category.nameBn}

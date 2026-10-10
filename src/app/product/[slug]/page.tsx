@@ -58,7 +58,7 @@ async function ProductsDetails({ params }: SlugProps) {
 
   return (
     <main className="flex-1 bg-background-body">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6">
+      <div className="space-y-6 mx-auto max-w-7xl px-4 py-6">
         <nav aria-label="breadcrumb" className="breadcrumbs text-sm">
           <ul>
             <li>
@@ -73,24 +73,28 @@ async function ProductsDetails({ params }: SlugProps) {
           </ul>
         </nav>
         <header className="rounded-2xl border border-base-300 bg-white-main p-4">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <span className="grid size-20 shrink-0 place-items-center rounded-2xl bg-white-off text-4xl">
-              {product.image}
-            </span>
-            <div className="space-y-1 flex-1">
-              <h1 className="text-2xl font-bold sm:text-3xl">
-                {product.nameBn}
-              </h1>
-              <p className="text-sm text-base-content/70">
-                প্রতি {units[product.unit]} · {product.categoryNameBn}
-              </p>
-              <p className="text-sm text-base-content/70">
-                গতকালের তুলনায় আজ দাম{" "}
-                <span className="font-semibold">
-                  {product.change.dir === "down" ? "কমেছে" : "বেড়েছে"}
-                </span>{" "}
-                {numToBn(Math.abs(product.change.pct))}%
-              </p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+            <div className="flex justify-between gap-3">
+              <span className="grid size-20 shrink-0 place-items-center rounded-2xl bg-white-off text-4xl">
+                {product.image}
+              </span>
+              <div className="space-y-1 text-end sm:text-start">
+                <h1 className="text-2xl font-bold sm:text-3xl">
+                  {product.nameBn}
+                </h1>
+                <p className="text-sm text-base-content/70">
+                  প্রতি {units[product.unit]} · {product.categoryNameBn}
+                </p>
+                <p className="text-sm text-base-content/70">
+                  গতকালের তুলনায় আজ দাম{" "}
+                  <span className="font-semibold">
+                    {product.change.dir === "down" ? "কমেছে" : "বেড়েছে"}
+                  </span>{" "}
+                  <span className="font-light">
+                    {numToBn(Math.abs(product.change.pct))}%
+                  </span>
+                </p>
+              </div>
             </div>
             <div className="rounded-box bg-white-off px-5 py-4 text-center">
               <p className="text-sm text-base-content/70">আজকের দাম</p>
@@ -163,11 +167,6 @@ async function ProductsDetails({ params }: SlugProps) {
               </div>
             </section>
           </div>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <a className="btn btn-ghost" href="/category/sobji">
-            🥬 সব সবজি
-          </a>
         </div>
       </div>
     </main>

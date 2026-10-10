@@ -1,20 +1,20 @@
 "use client";
 
-import TextField from "@/components/shared/TextField";
+import { Form, TextField, Input, Label, FieldError } from "@heroui/react";
 import Link from "next/link";
 
 // import { authClient } from "@/lib/auth-client";
 // import toast from "react-hot-toast";
 
 const SignInPage = () => {
-  const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user: Record<string, string> = {};
 
-    const formData = new FormData(e.target);
-    const user = Object.fromEntries(formData.entries()) as {
-      email: string;
-      password: string;
-    };
+    formData.forEach((value, key) => {
+      user[key] = value.toString();
+    });
 
     console.log(user);
 
@@ -47,53 +47,80 @@ const SignInPage = () => {
   // };
 
   return (
-    <main className="space-y-5 py-10 bg-background-body flex flex-col items-center justify-center">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold">সাইন ইন</h2>
-        <p className="text-foreground-light">
-          বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
-        </p>
-      </div>
-      <form
-        onSubmit={onSubmit}
-        className="space-y-3 sm:w-md mx-3 sm:mx-0 p-5 bg-white-main rounded-2xl flex flex-col"
-      >
-        <fieldset className="space-y-2 fieldset rounded-2xl">
-          <TextField
-            label="ইমেইল"
-            name="email"
-            type="email"
-            placeholder="you@example.com"
-          />
-
-          <TextField
-            label="পাসওয়ার্ড"
-            name="password"
-            type="password"
-            placeholder="পাসওয়ার্ড"
-          />
-
-          <button
-            type="submit"
-            className="btn py-5 text-white bg-primary rounded-lg"
-          >
-            সাইন ইন
-          </button>
-        </fieldset>
+    <main className="space-y-5 py-5 sm:pt-10 flex-1 bg-background-body">
+      <section className="sm:w-full space-y-5 max-w-lg mx-4 sm:mx-auto flex flex-col">
         <div className="text-center">
-          অ্যাকাউন্ট নেই?{" "}
-          <Link href="/signup" className="text-primary">
-            সাইন আপ করুন
-          </Link>
+          <h2 className="text-2xl font-bold">সাইন ইন</h2>
+          <p className="text-foreground-light">
+            বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
+          </p>
         </div>
-      </form>
+        <Form
+          onSubmit={onSubmit}
+          className="space-y-3 p-5 bg-white-main rounded-2xl"
+        >
+          <fieldset className="space-y-2 fieldset rounded-2xl">
+            <TextField
+              name="email"
+              type="email"
+              validate={(value) => {
+                if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                  return "ই-মেইল অ্যাড্রেস সঠিকভাবে লিখুন";
+                }
 
-      <Link href="/" className="text-foreground-light text-sm">
-        ← হোম পেজে ফিরে যান
-      </Link>
+                return null;
+              }}
+            >
+              <Label className="text-base">ই-মেইল</Label>
+              <Input
+                className="input rounded-lg w-full"
+                placeholder="you@example.com"
+              />
+              <FieldError className="text-red-500" />
+            </TextField>
 
-      {/* <button onClick={handleGoogleSignIn} className="btn ">Sign In With Google</button>
+            <TextField
+              minLength={8}
+              name="password"
+              type="password"
+              validate={(value) => {
+                if (value.length < 8) {
+                  return "পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে";
+                }
+
+                return null;
+              }}
+            >
+              <Label className="text-base">পাসওয়ার্ড</Label>
+              <Input
+                className="input rounded-lg w-full"
+                placeholder="কমপক্ষে ৮ অক্ষর"
+              />
+              <FieldError className="text-red-500" />
+            </TextField>
+
+            <button
+              type="submit"
+              className="btn py-5 text-white bg-primary rounded-lg"
+            >
+              সাইন ইন
+            </button>
+          </fieldset>
+          <div className="text-center">
+            অ্যাকাউন্ট নেই?{" "}
+            <Link href="/signup" className="text-primary">
+              সাইন আপ করুন
+            </Link>
+          </div>
+        </Form>
+
+        <Link href="/" className="text-foreground-light text-center">
+          ← হোম পেজে ফিরে যান
+        </Link>
+
+        {/* <button onClick={handleGoogleSignIn} className="btn ">Sign In With Google</button>
       <button onClick={handleGithubSignIn} className="btn ">Sign In With Github</button> */}
+      </section>
     </main>
   );
 };
