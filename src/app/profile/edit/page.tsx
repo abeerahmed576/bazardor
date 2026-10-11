@@ -1,11 +1,13 @@
 "use client";
 
+import { authClient } from "@/utils/auth-client";
 // import { authClient } from "@/lib/auth-client";
 import { TextField, Input, Label, FieldError } from "@heroui/react";
+import { redirect } from "next/navigation";
 
 function EditProfile() {
-  // const { data: session } = authClient.useSession();
-  // const user = session?.user;
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   const handleUpdateProfile = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault();
@@ -14,9 +16,17 @@ function EditProfile() {
       name: string;
     };
 
-    // await authClient.updateUser({
-    //     ...newUserData
-    // })
+    const { data, error } = await authClient.updateUser({
+      ...newUserData,
+    });
+
+    if (data) {
+      redirect("/profile");
+    }
+
+    if (error) {
+      console.log(error);
+    }
   };
 
   return (

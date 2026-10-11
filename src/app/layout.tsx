@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Marquee from "@/components/Marquee";
-import NavLinks from "@/components/homepage/NavLinks";
+import { Toaster } from "react-hot-toast";
 
 const hindSiliguri = Hind_Siliguri({
   weight: ["300", "400", "500", "600", "700"],
@@ -26,11 +26,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <div className="min-h-screen flex flex-col">
           <Header />
-          <NavLinks />
           <Marquee />
           {children}
           <Footer />
         </div>
+        <Toaster />
       </body>
     </html>
   );

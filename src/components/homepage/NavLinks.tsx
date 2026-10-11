@@ -8,7 +8,7 @@ async function NavLinks() {
   ).catch(() => null);
 
   return categories ? (
-    <nav className="w-full max-w-7xl xl:mx-auto py-2">
+    <nav className="w-full max-w-7xl xl:mx-auto py-2 border-b border-b-white-off">
       <ul className="flex items-center gap-3 overflow-x-auto">
         {categories.map((category) => (
           <NavLink key={category.id} category={category} />

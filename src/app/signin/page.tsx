@@ -1,50 +1,47 @@
 "use client";
 
-import { Form, TextField, Input, Label, FieldError } from "@heroui/react";
+import { TextField, Input, Label, FieldError } from "@heroui/react";
 import Link from "next/link";
 
-// import { authClient } from "@/lib/auth-client";
-// import toast from "react-hot-toast";
+import { authClient } from "@/utils/auth-client";
+import toast from "react-hot-toast";
 
 const SignInPage = () => {
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const user: Record<string, string> = {};
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      email: string;
+      password: string;
+    };
 
-    formData.forEach((value, key) => {
-      user[key] = value.toString();
+    const { data, error } = await authClient.signIn.email({
+      ...user,
+      callbackURL: "/",
     });
 
-    console.log(user);
+    if (data) {
+      toast.success("সাইন ইন সফল হয়েছে!");
+    }
 
-    // const { data, error } = await authClient.signIn.email({
-    //   ...user,
-    //   callbackURL: "/",
-    // });
-
-    // if (data) {
-    //   toast.success("Sign In successfull!");
-    //   console.log(data);
-    // }
-
-    // if (error) {
-    //   toast.error("Something went error!");
-    //   console.log(error);
-    // }
+    if (error) {
+      toast.error("ভুল ই-মেইল অথবা পাসওয়ার্ড!");
+    }
   };
 
-  // const handleGoogleSignIn = async () => {
-  //   await authClient.signIn.social({
-  //     provider: "google",
-  //   });
-  // };
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+    });
 
-  // const handleGithubSignIn = async () => {
-  //   await authClient.signIn.social({
-  //     provider: "github",
-  //   });
-  // };
+    if (data) {
+      toast.success("সাইন ইন সফল হয়েছে!");
+    }
+
+    if (error) {
+      toast.error("কিছু একটা সমস্যা হয়েছে!");
+    }
+  };
 
   return (
     <main className="space-y-5 py-5 sm:pt-10 flex-1 bg-background-body">
@@ -55,8 +52,8 @@ const SignInPage = () => {
             বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
           </p>
         </div>
-        <Form
-          onSubmit={onSubmit}
+        <form
+          onSubmit={handleSubmit}
           className="space-y-3 p-5 bg-white-main rounded-2xl"
         >
           <fieldset className="space-y-2 fieldset rounded-2xl">
@@ -101,25 +98,35 @@ const SignInPage = () => {
 
             <button
               type="submit"
-              className="btn py-5 text-white bg-primary rounded-lg"
+              className="btn py-5 text-white text-base bg-primary rounded-lg"
             >
               সাইন ইন
             </button>
           </fieldset>
+          <div className="flex items-center gap-3">
+            <div className="h-0.5 flex-1 bg-gray-200"></div>
+            <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+              অথবা
+            </span>
+            <div className="h-0.5 flex-1 bg-gray-200"></div>
+          </div>
+          <button
+            onClick={handleGoogleSignIn}
+            className="w-full py-5 text-base btn btn-outline rounded-lg border-gray-200"
+          >
+            Google দিয়ে চালিয়ে যান
+          </button>
           <div className="text-center">
             অ্যাকাউন্ট নেই?{" "}
             <Link href="/signup" className="text-primary">
               সাইন আপ করুন
             </Link>
           </div>
-        </Form>
+        </form>
 
         <Link href="/" className="text-foreground-light text-center">
           ← হোম পেজে ফিরে যান
         </Link>
-
-        {/* <button onClick={handleGoogleSignIn} className="btn ">Sign In With Google</button>
-      <button onClick={handleGithubSignIn} className="btn ">Sign In With Github</button> */}
       </section>
     </main>
   );

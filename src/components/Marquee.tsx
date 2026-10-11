@@ -29,7 +29,7 @@ const Marquee = async () => {
     </div>
   ) : (
     <div className="py-2 text-xl font-medium text-center border-y border-y-white-off">
-      দুঃখিত। তথ্য সংগ্রহ ব্যর্থ হয়েছে
+      দুঃখিত। বাজারদর তথ্য সংগ্রহ ব্যর্থ হয়েছে
     </div>
   );
 
