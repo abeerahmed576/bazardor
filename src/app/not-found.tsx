@@ -6,7 +6,7 @@ function NotFound() {
   return (
     <div className="flex flex-1 flex-col justify-center items-center bg-background-body space-y-6 text-center">
       <div className="space-y-2">
-        <h1 className="text-4xl font-bold uppercase">
+        <h1 className="text-4xl text-primary font-bold">
           ৪০৪ - খুঁজে পাওয়া যায়নি
         </h1>
         <p className="text-lg text-foreground-light">
