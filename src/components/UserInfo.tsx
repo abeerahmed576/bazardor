@@ -37,7 +37,11 @@ function UserInfo() {
               <span className="avatar avatar-placeholder">
                 <span className="w-7 sm:w-9">
                   {user?.image ? (
-                    <img alt="User Avatar" src={user?.image as string} />
+                    <img
+                      className="rounded-full"
+                      alt="User Avatar"
+                      src={user?.image as string}
+                    />
                   ) : (
                     <span>{user?.name[0]}</span>
                   )}

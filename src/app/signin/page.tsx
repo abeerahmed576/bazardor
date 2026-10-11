@@ -30,17 +30,9 @@ const SignInPage = () => {
   };
 
   const handleGoogleSignIn = async () => {
-    const { data, error } = await authClient.signIn.social({
+    await authClient.signIn.social({
       provider: "google",
     });
-
-    if (data) {
-      toast.success("সাইন ইন সফল হয়েছে!");
-    }
-
-    if (error) {
-      toast.error("কিছু একটা সমস্যা হয়েছে!");
-    }
   };
 
   return (
@@ -114,6 +106,7 @@ const SignInPage = () => {
             onClick={handleGoogleSignIn}
             className="w-full py-5 text-base btn btn-outline rounded-lg border-gray-200"
           >
+            <img className="size-6" src="/google-icon.png" alt="google logo" />
             Google দিয়ে চালিয়ে যান
           </button>
           <div className="text-center">

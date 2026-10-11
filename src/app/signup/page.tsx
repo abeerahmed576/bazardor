@@ -160,6 +160,7 @@ export function SignUpPage() {
             onClick={handleGoogleSignIn}
             className="w-full py-5 text-base btn btn-outline rounded-lg border-gray-200"
           >
+            <img className="size-6" src="/google-icon.png" alt="google logo" />
             Google দিয়ে চালিয়ে যান
           </button>
           <div className="text-center">

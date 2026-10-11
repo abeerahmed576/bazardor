@@ -1,14 +1,11 @@
 "use client";
 
 import { authClient } from "@/utils/auth-client";
-// import { authClient } from "@/lib/auth-client";
 import { TextField, Input, Label, FieldError } from "@heroui/react";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 function EditProfile() {
-  const { data: session } = authClient.useSession();
-  const user = session?.user;
-
   const handleUpdateProfile = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -21,11 +18,12 @@ function EditProfile() {
     });
 
     if (data) {
+      toast.success("প্রোফাইল আপডেট হয়েছে!");
       redirect("/profile");
     }
 
     if (error) {
-      console.log(error);
+      toast.error("কিছু একটা সমস্যা হয়েছে");
     }
   };
 

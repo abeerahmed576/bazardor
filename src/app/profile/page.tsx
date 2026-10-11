@@ -43,18 +43,19 @@ const ProfilePage = () => {
         </div>
         <div className="p-3 sm:p-5 bg-white-main rounded-2xl flex justify-between items-center">
           <div className="flex items-center gap-2 sm:gap-5">
-            <div className="p-2 w-9 sm:w-15 overflow-hidden rounded-xl">
-              {user?.image ? (
-                <Image
-                  src={user?.image as string}
-                  alt="User Avatar"
-                  width={70}
-                  height={70}
-                />
-              ) : (
-                <span>{user?.name[0]}</span>
-              )}
-            </div>
+            {user?.image ? (
+              <Image
+                className="rounded-xl"
+                src={user?.image as string}
+                alt="User Avatar"
+                width={70}
+                height={70}
+              />
+            ) : (
+              <span className="py-5 w-15 bg-gray-200 text-center rounded-xl">
+                {user?.name[0]}
+              </span>
+            )}
             <div>
               <h2 className="font-semibold text-lg sm:text-2xl">
                 {user?.name}

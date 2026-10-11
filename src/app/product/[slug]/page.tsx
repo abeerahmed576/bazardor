@@ -5,6 +5,7 @@ import units from "@/lib/unitToBn";
 import numToBn from "@/lib/numToBn";
 import ChangePct from "@/components/shared/ChangePct";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 type SlugProps = {
   params: Promise<{ slug: number }>;
@@ -48,9 +49,11 @@ function PriceCard({
 
 async function ProductsDetails({ params }: SlugProps) {
   const { slug: id } = await params;
-  const product = await getData<IProduct>(
+  const product: IProduct | "404" = await getData<IProduct>(
     `${process.env.BAZARDOR_DATA_URL}/products/${id}`,
-  );
+  ).catch((err) => err.message);
+
+  if (product === "404") notFound();
 
   const sortedMarkets = product.markets.sort((a, b) => a.min - b.min);
   const lowestPrice = sortedMarkets[0].min;

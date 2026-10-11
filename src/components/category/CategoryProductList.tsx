@@ -28,7 +28,7 @@ function CategoryProductList({ list }: { list: IProduct[] }) {
           </select>
         </div>
       </div> */}
-      <div className="flex flex-wrap justify-between gap-2">
+      <div className="flex flex-wrap justify-between items-center gap-2">
         <p>মোট {numToBn(list.length)}টি পণ্য দেখানো হচ্ছে</p>
         <div className="flex items-center gap-2">
           <label className="flex items-center gap-2">

@@ -3,6 +3,7 @@ import getData from "@/lib/getData";
 import numToBn from "@/lib/numToBn";
 import { IProduct } from "@/types/Product.type";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 type SlugProps = {
   params: Promise<{ slug: number }>;
@@ -23,9 +24,12 @@ export async function generateMetadata({
 
 async function CategoryProducts({ params }: SlugProps) {
   const { slug: category } = await params;
-  const categoryProducts = await getData<IProduct[]>(
+  const categoryProducts: IProduct[] = await getData<IProduct[]>(
     `${process.env.BAZARDOR_DATA_URL}/products?category=${category}`,
-  );
+  ).catch((err) => err.message);
+
+  if (categoryProducts.length === 0) notFound();
+
   const currentCategoryName = categoryProducts[0].categoryNameBn;
   const currentCategoryIcon = categoryProducts[0].categoryIcon;
 

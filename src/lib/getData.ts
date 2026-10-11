@@ -7,7 +7,7 @@ const getData: TGetData = async <T>(
   const res = await fetch(url, config);
 
   if (!res.ok) {
-    throw new Error(`Request failed: ${res.status}`);
+    throw new Error(`${res.status}`);
   }
 
   return res.json();
